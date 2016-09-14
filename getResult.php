@@ -3,7 +3,7 @@ header("Content-Type: text/plain");
 include 'calculator.php';
 
 if (isset($_GET['expr'])) {
-$obj=new newCalculator();
+$obj=new newCalculator($_GET['expr']);
 
-    echo $obj->calculator($_GET['expr']);
+    echo $obj->getValue();
 }

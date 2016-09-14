@@ -1,18 +1,27 @@
 <?php
 class newCalculator{
-function calculator($infixExpression)
+public $expr;
+public function __construct($infixExpression){
+$this->expr=$this->calculator($infixExpression);
+
+}
+
+public function getValue(){
+return $this->expr;
+}
+public function calculator($infixExpression)
 {
     $infixArray = $this->InfixToArrayInfix($infixExpression);
     $postfixArray = $this->InfixArrayToPostfixArray($infixArray);
     return $this->Evaluate($postfixArray);
 }
 
-//function validInfix($arrInfix)
-function validInfix($arrInfix)
+//public function validInfix($arrInfix)
+public function validInfix($arrInfix)
 {
 }
 
-function is_operator($op)
+public function is_operator($op)
 {
     $operator = '+-*/%^()';
     if (is_numeric(strpos($operator, $op))) {
@@ -22,9 +31,9 @@ function is_operator($op)
 }
 
 ###
-#  convert infix to infixArray function(s)
+#  convert infix to infixArray public function(s)
 ###
-function InfixToArrayInfix($infix)
+public function InfixToArrayInfix($infix)
 {
     $infixArray = $array = array();
     $infixIndex = -1;
@@ -46,9 +55,9 @@ function InfixToArrayInfix($infix)
 }
 
 ###
-#  convert infix to postfix function(s)
+#  convert infix to postfix public function(s)
 ###
-function InfixArrayToPostfixArray($infixArray)
+public function InfixArrayToPostfixArray($infixArray)
 {
     $infixIndex = 0;
     $infixLength = count($infixArray) - 1;
@@ -84,7 +93,7 @@ function InfixArrayToPostfixArray($infixArray)
     return $postfixArray;
 }
 
-function is_morePriority($op1, $op2)
+public function is_morePriority($op1, $op2)
 {
     $operatorPriority = array('(', '+-', '*/%', '^');
     $op1Index = $op2Index = '';
@@ -104,9 +113,9 @@ function is_morePriority($op1, $op2)
 
 
 ###
-#  evaluate expression function(s)
+#  evaluate expression public function(s)
 ###
-function Evaluate($postfixArray)
+public function Evaluate($postfixArray)
 {
     $postfixIndex = 0;
     $postfixLength = count($postfixArray) - 1;
@@ -128,7 +137,7 @@ function Evaluate($postfixArray)
     return $stack[$stackTop];
 }
 
-function perform_operate($num1, $num2, $op)
+public function perform_operate($num1, $num2, $op)
 {
     $result = 0;
     switch ($op) {
