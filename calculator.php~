@@ -1,11 +1,10 @@
 <?php
 class newCalculator{
-public $foo;
-function __construct($infixExpression)
+function calculator($infixExpression)
 {
     $infixArray = $this->InfixToArrayInfix($infixExpression);
     $postfixArray = $this->InfixArrayToPostfixArray($infixArray);
-    $foo=$this->Evaluate($postfixArray);
+    return $this->Evaluate($postfixArray);
 }
 
 //function validInfix($arrInfix)
@@ -71,7 +70,7 @@ function InfixArrayToPostfixArray($infixArray)
             if ($stackTop < 0 || $this->is_morePriority($infixArray[$infixIndex], $stack[$stackTop])) { //and more priority than top stack item
                 $stack[++$stackTop] = $infixArray[$infixIndex++];
             } else { //and less priority than top stack item
-                while ($stackTop >= 0 && !is_morePriority($infixArray[$infixIndex], $stack[$stackTop])) {
+                while ($stackTop >= 0 && !$this->is_morePriority($infixArray[$infixIndex], $stack[$stackTop])) {
                     $postfixArray[++$postfixIndex] = $stack[$stackTop--];
                 }
             }
@@ -155,9 +154,4 @@ function perform_operate($num1, $num2, $op)
     return $result;
 }
 
-
-public function __toString()
-    {
-        return $this->foo;
-    }
 }

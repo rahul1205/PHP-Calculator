@@ -70,7 +70,7 @@ function InfixArrayToPostfixArray($infixArray)
             if ($stackTop < 0 || $this->is_morePriority($infixArray[$infixIndex], $stack[$stackTop])) { //and more priority than top stack item
                 $stack[++$stackTop] = $infixArray[$infixIndex++];
             } else { //and less priority than top stack item
-                while ($stackTop >= 0 && !is_morePriority($infixArray[$infixIndex], $stack[$stackTop])) {
+                while ($stackTop >= 0 && !$this->is_morePriority($infixArray[$infixIndex], $stack[$stackTop])) {
                     $postfixArray[++$postfixIndex] = $stack[$stackTop--];
                 }
             }
